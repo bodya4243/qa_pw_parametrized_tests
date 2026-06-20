@@ -1,13 +1,12 @@
 import { test } from '../_fixtures/fixtures';
+import { COFFEE_NAMES } from '../../src/constants';
 
 const parameters = [
     {
-        coffeeName: 'Cappuccino',
-        menuClickCupMethod: 'clickCappucinoCup',
+        coffeeName: COFFEE_NAMES.cappuccino,
     },
     {
-        coffeeName: 'Espresso',
-        menuClickCupMethod: 'clickEspressoCup',
+        coffeeName: COFFEE_NAMES.espresso,
     },
 ];
 
@@ -17,7 +16,7 @@ parameters.forEach(parameter => {
         cartPage,
     }) => {
         await menuPage.open();
-        await menuPage[parameter.menuClickCupMethod]();
+        await menuPage.clickCoffeeCup(parameter.coffeeName);
 
         await menuPage.clickCartLink();
         await cartPage.waitForLoading();
