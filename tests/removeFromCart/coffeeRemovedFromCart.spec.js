@@ -1,23 +1,18 @@
 import { test } from '../_fixtures/fixtures';
-import { COFFEE_PRICES } from '../../src/constants';
 
 const parameters = [
     {
-        cupName: 'cappuccino',
-        price: COFFEE_PRICES.cappuccino,
+        coffeeName: 'Cappuccino',
         menuClickCupMethod: 'clickCappucinoCup',
-        cartClickRemoveAllMethod : 'clickRemoveAllCappucinoButton',
     },
     {
-        cupName: 'espresso',
-        price: COFFEE_PRICES.espresso,
+        coffeeName: 'Espresso',
         menuClickCupMethod: 'clickEspressoCup',
-        cartClickRemoveAllMethod : 'clickRemoveAllEspressoButton',
     },
 ];
 
 parameters.forEach(parameter => {
-    test(`Check ${parameter.cupName} removed from Cart after clicking remove`, async ({
+    test(`Check ${parameter.coffeeName} removed from Cart after clicking remove`, async ({
         menuPage,
         cartPage,
     }) => {
@@ -27,7 +22,7 @@ parameters.forEach(parameter => {
         await menuPage.clickCartLink();
         await cartPage.waitForLoading();
 
-        await cartPage[parameter.cartClickRemoveAllMethod]();
+        await cartPage.clickRemoveAllCoffeeButton(parameter.coffeeName);
         await cartPage.assertNoCoffeeMessageIsVisible();
     });
 });

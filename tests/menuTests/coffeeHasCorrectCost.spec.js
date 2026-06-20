@@ -13,14 +13,16 @@ const parameters = [
         price: COFFEE_PRICES.espresso,
         methodName: 'assertEspressoCupCostHasValue',
     },
-]
+];
 
 parameters.forEach(parameter => {
-    test(`Check ${parameter.cupName} cup has correct cost`, async ({menuPage}) => {
+    test(`Check ${parameter.cupName} cup has correct cost`, async ({
+        menuPage,
+    }) => {
         const price = priceFormatStr(parameter.price);
 
         await menuPage.open();
 
         await menuPage[parameter.methodName](price);
-    })
-})
+    });
+});

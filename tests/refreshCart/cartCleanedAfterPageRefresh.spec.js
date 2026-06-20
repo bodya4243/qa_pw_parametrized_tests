@@ -11,10 +11,10 @@ test('Assert cart cleaned after page refresh', async ({
   await menuPage.clickCartLink();
   await cartPage.waitForLoading();
 
-  await cartPage.assertCappuccinoItemIsVisible();
+  await cartPage.assertCoffeeItemIsVisible('Cappuccino');
 
   await cartPage.reload();
 
-  await cartPage.assertCappuccinoItemIsHidden();
+  await cartPage.assertCoffeeItemIsHidden('Cappuccino');
   await cartPage.assertNoCoffeeMessageIsVisible();
 });
